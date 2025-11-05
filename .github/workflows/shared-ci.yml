@@ -1,4 +1,4 @@
-name: TradeLabs Reusable CI
+name: Reusable CI
 
 on:
   workflow_call:
@@ -12,8 +12,8 @@ on:
         default: true
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
+  pull-requests: none
 
 jobs:
   format:
