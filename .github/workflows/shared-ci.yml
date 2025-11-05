@@ -1,0 +1,27 @@
+name: Shared CI for Next.js
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        required: true
+        type: string
+      os:
+        required: true
+        type: string
+
+jobs:
+  ci:
+    runs-on: ${{ inputs.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - run: npm install
+      - run: npm run build --if-present
+      - run: npm test --if-present
